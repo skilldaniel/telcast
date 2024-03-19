@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Country;
 
 class AuthController extends Controller
 {
@@ -16,9 +17,11 @@ class AuthController extends Controller
      */
     public function index($id)
     {
+        $data['countries'] = Country::get(["name", "id"]);
         switch($id) {
             case 0:
-                return view('auth.login');
+                // dd($data);
+                return view('auth.login', $data);
                 break;
             case 1:
                 return view('auth.channellogin');

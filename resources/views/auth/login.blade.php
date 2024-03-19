@@ -111,12 +111,16 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col form-group">
                                     <label>{{ __('Country') }}</label>
-                                    <select class="countries form-control mb-0" name="country" id="countryId"
-                                            required>
+                                    <select class="countries form-control mb-0" name="country" id="countryId" required>
                                         <option value="">Select Country</option>
+                                        @foreach ($countries as $data)
+                                        <option value="{{$data->id}}">
+                                            {{$data->name}}
+                                        </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -135,7 +139,7 @@
                                         <option value="">Select City</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="row">
                                 <div class="col form-group">
@@ -211,7 +215,7 @@
 <script src="{{ asset('dashboard/js/jquery.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/popper.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/bootstrap.min.js') }}"></script>
-<script src="//geodata.solutions/includes/countrystatecity.js"></script>
+<!-- <script src="//geodata.solutions/includes/countrystatecity.js"></script> -->
 <script>
     $(document).on('click', '.btn-signin, .btn-signup', (e) => {
         $('.tab-pane').removeClass('active');
@@ -222,6 +226,49 @@
             $('#signup').addClass('active');
         }
     });
+    $(document).ready(function () {
+        $('#countryId').on('change', function () {
+            var idCountry = this.value;
+            $("#stateId").html('');
+            $.ajax({
+                url: "{{url('api/fetch-states')}}",
+                type: "POST",
+                data: {
+                    country_id: idCountry,
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    $('#stateId').html('<option value="">Select State</option>');
+                    $.each(result.states, function (key, value) {
+                        $("#stateId").append('<option value="' + value
+                            .id + '">' + value.name + '</option>');
+                    });
+                    $('#cityId').html('<option value="">Select City</option>');
+                }
+            });
+        });
+        $('#stateId').on('change', function () {
+            var idState = this.value;
+            $("#cityId").html('');
+            $.ajax({
+                url: "{{url('api/fetch-cities')}}",
+                type: "POST",
+                data: {
+                    state_id: idState,
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function (res) {
+                    $('#cityId').html('<option value="">Select City</option>');
+                    $.each(res.cities, function (key, value) {
+                        $("#cityId").append('<option value="' + value
+                            .id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        });
+    });    
 </script>    
 </body>
 </html>

@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
+use App\Models\Country;
 
 class FortifyUIServiceProvider extends ServiceProvider
 {
@@ -32,7 +33,8 @@ class FortifyUIServiceProvider extends ServiceProvider
         $this->app->singleton(TwoFactorLoginResponseContract::class, TwoFactorLoginResponse::class);
 
         Fortify::loginView(function () {
-            return view('auth.login');
+            $data['countries'] = Country::get(["name", "id"]);
+            return view('auth.login', $data);
         });
 
 //        Fortify::registerView(function () {

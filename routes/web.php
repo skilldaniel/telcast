@@ -1,15 +1,18 @@
 <?php
 
 use App\Helpers\VideoStream;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PaginationController;
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\MovieController;
+
 use App\Http\Controllers\ImdbController;
 use App\Http\Controllers\PaypalController;
+use App\Http\Controllers\CountryStateCityController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PaginationController;
+use App\Http\Controllers\Campaign\CampaignController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\MovieController;
 use App\Http\Controllers\User\PlanController;
 use App\Http\Controllers\User\TransactionController;
-use App\Http\Controllers\Campaign\CampaignController;
+
 use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -476,3 +479,7 @@ Route::post('auth_login/{id}', [\App\Http\Controllers\AuthController::class, 'lo
 
 // test
 Route::post('/upload-doc-file', [CampaignController::class, 'uploadToServer']);
+
+Route::get('api/fetch-country', [CountryStateCityController::class, 'index']);
+Route::post('api/fetch-states', [CountryStateCityController::class, 'fetchState']);
+Route::post('api/fetch-cities', [CountryStateCityController::class, 'fetchCity']);
