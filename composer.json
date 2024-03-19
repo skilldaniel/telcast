@@ -13,6 +13,7 @@
         "laravel/cashier": "^13.5",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "nnjeim/world": "^1.1",
         "pbmedia/laravel-ffmpeg": "^7.5",
         "pion/laravel-chunk-upload": "^1.4",
         "protonemedia/laravel-cross-eloquent-search": "^2.4",

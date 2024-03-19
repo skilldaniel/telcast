@@ -15,7 +15,7 @@ class CreateLanguageMovieTable extends Migration
     {
         Schema::create('language_movie', function (Blueprint $table) {
             $table->id();
-	        $table->foreignId('language_id')->references('id')->on('languages')->onDelete('cascade');
+	        $table->foreignId('language_id')->references('id')->on('languageinfos')->onDelete('cascade');
 	        $table->foreignId('movie_id')->references('id')->on('movies')->onDelete('cascade');
 	        $table->timestamps();
         });

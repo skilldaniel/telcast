@@ -15,7 +15,7 @@ class CreateLanguageSportTable extends Migration
     {
         Schema::create('language_sport', function (Blueprint $table) {
             $table->id();
-	        $table->foreignId('language_id')->references('id')->on('languages')->onDelete('cascade');
+	        $table->foreignId('language_id')->references('id')->on('languageinfos')->onDelete('cascade');
 	        $table->foreignId('sport_id')->references('id')->on('sports')->onDelete('cascade');
 	        $table->timestamps();
         });

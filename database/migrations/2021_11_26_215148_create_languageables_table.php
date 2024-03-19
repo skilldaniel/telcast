@@ -15,7 +15,7 @@ class CreateLanguageablesTable extends Migration
     {
         Schema::create('languageables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('language_id')->references('id')->on('languages')->onDelete('cascade');
+            $table->foreignId('language_id')->references('id')->on('languageinfos')->onDelete('cascade');
             $table->unsignedBigInteger('languageable_id');
             $table->string('languageable_type');
             $table->timestamps();

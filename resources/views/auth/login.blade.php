@@ -111,7 +111,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col form-group">
                                     <label>{{ __('Country') }}</label>
                                     <select class="countries form-control mb-0" name="country" id="countryId" required>
@@ -139,7 +139,7 @@
                                         <option value="">Select City</option>
                                     </select>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div class="row">
                                 <div class="col form-group">

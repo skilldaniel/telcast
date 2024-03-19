@@ -15,7 +15,7 @@ class CreateLanguageLiveTable extends Migration
     {
         Schema::create('language_live', function (Blueprint $table) {
             $table->id();
-	        $table->foreignId('language_id')->references('id')->on('languages')->onDelete('cascade');
+	        $table->foreignId('language_id')->references('id')->on('languageinfos')->onDelete('cascade');
 	        $table->foreignId('live_id')->references('id')->on('lives')->onDelete('cascade');
 	        $table->timestamps();
         });

@@ -15,7 +15,7 @@ class CreateLanguageShowTable extends Migration
     {
         Schema::create('language_show', function (Blueprint $table) {
             $table->id();
-	        $table->foreignId('language_id')->references('id')->on('languages')->onDelete('cascade');
+	        $table->foreignId('language_id')->references('id')->on('languageinfos')->onDelete('cascade');
 	        $table->foreignId('show_id')->references('id')->on('shows')->onDelete('cascade');
 	        $table->timestamps();
         });
